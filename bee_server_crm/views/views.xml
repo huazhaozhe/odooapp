@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="bee_server_crm.list">
+      <field name="name">bee_server_crm list</field>
+      <field name="model">bee_server_crm.bee_server_crm</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="bee_server_crm.action_window">
+      <field name="name">bee_server_crm window</field>
+      <field name="res_model">bee_server_crm.bee_server_crm</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="bee_server_crm.action_server">
+      <field name="name">bee_server_crm server</field>
+      <field name="model_id" ref="model_bee_server_crm_bee_server_crm"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="bee_server_crm" id="bee_server_crm.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="bee_server_crm.menu_1" parent="bee_server_crm.menu_root"/>
+    <menuitem name="Menu 2" id="bee_server_crm.menu_2" parent="bee_server_crm.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="bee_server_crm.menu_1_list" parent="bee_server_crm.menu_1"
+              action="bee_server_crm.action_window"/>
+    <menuitem name="Server to list" id="bee_server_crm" parent="bee_server_crm.menu_2"
+              action="bee_server_crm.action_server"/>
+    -->
+  </data>
+</odoo>
