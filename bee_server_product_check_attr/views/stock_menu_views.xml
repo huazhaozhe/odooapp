@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_product_check_attr"
+              name="产品检测值属性"
+              action="bee_server_product_check_attr.action_bee_server_product_check_attr"
+              parent="stock.menu_stock_inventory_control"
+              sequence="4"/>
+
+</odoo>

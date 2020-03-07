@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <template id="BeeServerFormAssetsBackend" name="BeeServerForm Assets Backend"
+                  inherit_id="web.assets_backend">
+
+            <xpath expr="." position="inside">
+                <!--业务js-->
+                <script type="text/javascript" src="/bee_server_excel_paste_setting/static/src/js/form_view.js"
+                        charset="utf-8"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

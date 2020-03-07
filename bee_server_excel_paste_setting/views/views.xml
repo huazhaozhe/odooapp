@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record id="bee_server_excel_paste_setting_view_form" model="ir.ui.view">
+            <field name="name">BeeServerExcel粘贴配置</field>
+            <field name="model">bee.server.excel.paste.setting</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="model_id"/>
+                                <field name="model_line_field_id" domain="[('model_id', '=', model_id)]"/>
+                            </group>
+                            <group>
+                                <field name="foreign_model_id"/>
+                                <field name="foreign_model_line_field_id" domain="[('model_id', '=', foreign_model_id)]"/>
+                            </group>
+                            <group>
+                                <field name="action_id"/>
+                                <field name="activate"/>
+                                <field name="describe"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page>
+                                <field name="line_ids">
+                                    <tree create="false" editable="top">
+                                        <field name="field_id" readonly="1" invisible="1"/>
+                                        <field name="field_display_name" readonly="1"/>
+                                        <field name="field_name" readonly="1"/>
+                                        <field name="field_ttype" readonly="1"/>
+                                        <field name="is_paste"/>
+                                        <field name="table_header"/>
+                                        <field name="key_word"/>
+                                        <field name="condition"/>
+                                        <field name="is_matched"/>
+                                        <field name="matched_key"/>
+                                        <field name="matched_condition"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_bee_excel_paste_setting" model="ir.actions.act_window">
+            <field name="name">BeeServerExcel粘贴配置</field>
+            <field name="res_model">bee.server.excel.paste.setting</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="BeeServerExcel粘贴配置" id="menu_bee_excel_paste_setting" parent="base.menu_administration"
+                  action="bee_server_excel_paste_setting.action_bee_excel_paste_setting"
+                  sequence="30"/>
+    </data>
+</odoo>

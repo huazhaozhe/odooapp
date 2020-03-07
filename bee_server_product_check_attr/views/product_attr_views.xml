@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+
+        <record id="action_bee_server_product_check_attr" model="ir.actions.act_window">
+            <field name="name">产品检测值属性</field>
+            <field name="res_model">bee.server.product.check.attr</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record model="ir.ui.view" id="bee_server_product_check_attr_tree_view">
+            <field name="name">产品检测值属性</field>
+            <field name="model">bee.server.product.check.attr</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

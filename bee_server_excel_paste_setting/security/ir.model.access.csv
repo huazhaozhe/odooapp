@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bee_server_excel_paste_setting,bee.server.excel.paste.setting,model_bee_server_excel_paste_setting,base.group_user,1,1,1,1
+access_bee_server_excel_paste_setting_line,bee.server.excel.paste.setting.line,model_bee_server_excel_paste_setting_line,base.group_user,1,1,1,1

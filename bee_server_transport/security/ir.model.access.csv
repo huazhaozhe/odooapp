@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bee_server_transport_location,bee.server.transport.location,model_bee_server_transport_location,base.group_user,1,1,1,1
+access_bee_server_transport_method,bee.server.transport.method,model_bee_server_transport_method,base.group_user,1,1,1,1
+access_bee_server_transport_contract,bee.server.transport.contract,model_bee_server_transport_contract,base.group_user,1,1,1,1
+access_bee_server_transport_order,bee.server.transport.order,model_bee_server_transport_order,base.group_user,1,1,1,1
+access_bee_server_transport_order_line,bee.server.transport.order.line,model_bee_server_transport_order_line,base.group_user,1,1,1,1
+access_bee_server_transport_cost_line,bee.server.transport.cost.line,model_bee_server_transport_cost_line,base.group_user,1,1,1,1

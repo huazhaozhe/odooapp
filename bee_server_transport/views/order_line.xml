@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="order_line_tree" model="ir.ui.view">
+            <field name="name">在途信息行</field>
+            <field name="model">bee.server.transport.order.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="contract_id"/>
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="start_wet_weight"/>
+                    <field name="arrive_wet_weight"/>
+                    <field name="start_quality"/>
+                    <field name="arrive_quality"/>
+                    <field name="start_water_content"/>
+                    <field name="arrive_water_content"/>
+                    <field name="start_dry_weight"/>
+                    <field name="arrive_dry_weight"/>
+                    <field name="summary_price"/>
+                    <field name="location_now"/>
+                    <field name="merge_qty"/>
+                    <field name="merge_from"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="order_line_form" model="ir.ui.view">
+            <field name="name">在途行信息</field>
+            <field name="model">bee.server.transport.order.line</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form strig="在途行信息">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h2>
+                                <field name="name" readonly="1"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="contract_id"/>
+                                <field name="order_id"/>
+                                <field name="product_id"/>
+                                <field name="summary_price"/>
+                                <field name="merge_qty"/>
+                                <field name="merge_from"/>
+                                <field name="location_now"/>
+                            </group>
+                            <group>
+                                <field name="start_wet_weight"/>
+                                <field name="arrive_wet_weight"/>
+                                <field name="start_quality"/>
+                                <field name="arrive_quality"/>
+                                <field name="start_dry_weight"/>
+                                <field name="arrive_dry_weight"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

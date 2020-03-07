@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="location_list">
+            <field name="name">地点列表</field>
+            <field name="model">bee.server.transport.location</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="company_id"/>
+                    <field name="purchase_andsingle"/>
+                    <field name="purchase_destination"/>
+                    <field name="sale_andsingle"/>
+                    <field name="sale_destination"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="method_list">
+            <field name="name">运输方式列表</field>
+            <field name="model">bee.server.transport.method</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <template id="BeeTransportPurchasePassageReport" name=" Purchase Passage Report"
+                  inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/bee_server_transport/static/src/css/bee_server_report.css"/>
+                <script type="text/javascript" src="/bee_server_transport/static/src/js/purchase_passage_report.js"
+                        charset="utf-8"/>
+            </xpath>
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/bee_server_transport/static/src/css/bee_server_table.css"/>
+            </xpath>
+        </template>
+
+        <record model="ir.actions.act_window" id="contract_list_action_window">
+            <field name="name">运输合同单</field>
+            <field name="res_model">bee.server.transport.contract</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="order_list_action_window">
+            <field name="name">运输单</field>
+            <field name="res_model">bee.server.transport.order</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="order_line_list_action_window">
+            <field name="name">在途行信息</field>
+            <field name="res_model">bee.server.transport.order.line</field>
+            <field name="view_mode">tree,form,pivot</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="location_action_window">
+            <field name="name">地点</field>
+            <field name="res_model">bee.server.transport.location</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="method_action_window">
+            <field name="name">运输方式</field>
+            <field name="res_model">bee.server.transport.method</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="purchase_passage_report_view_client" model="ir.actions.client">
+            <field name="name">采购运输在途报表</field>
+            <field name="tag">bee_server_transport_purchase_passage_report</field>
+        </record>
+
+        <menuitem name="运输" id="transport_root"/>
+
+        <menuitem name="运输" id="transport" parent="bee_server_transport.transport_root" sequence="0"/>
+
+        <menuitem name="运输合同单" id="contract" parent="bee_server_transport.transport"
+                  action="bee_server_transport.contract_list_action_window"/>
+        <menuitem name="运输单" id="order" parent="bee_server_transport.transport"
+                  action="bee_server_transport.order_list_action_window"/>
+        <menuitem name="在途行信息" id="order_line" parent="bee_server_transport.transport"
+                  action="bee_server_transport.order_line_list_action_window"/>
+
+
+        <menuitem name="报告" id="report" parent="bee_server_transport.transport_root" sequence="2"/>
+        <menuitem id="purchase_passage_report" name="采购运输在途报表" parent="bee_server_transport.report"
+                  action="bee_server_transport.purchase_passage_report_view_client"
+                  sequence="1"/>
+
+        <menuitem name="设置" id="settings" parent="bee_server_transport.transport_root" sequence="3"/>
+
+
+        <menuitem name="地点" id="settings_location"
+                  parent="bee_server_transport.settings"
+                  action="bee_server_transport.location_action_window"/>
+        <menuitem name="运输方式" id="settings_method"
+                  parent="bee_server_transport.settings"
+                  action="bee_server_transport.method_action_window"/>
+    </data>
+</odoo>

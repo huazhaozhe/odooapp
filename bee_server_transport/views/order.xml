@@ -1,0 +1,125 @@
+<odoo>
+    <data>
+        <record id="order_list" model="ir.ui.view">
+            <field name="name">运输单列表</field>
+            <field name="model">bee.server.transport.order</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="transport_method"/>
+                    <field name="location_start"/>
+                    <field name="location_end"/>
+                    <field name="location_now"/>
+                    <field name="vander"/>
+                    <field name="loading_date"/>
+                    <field name="forecast_end_time"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="order_form" model="ir.ui.view">
+            <field name="name">运输单</field>
+            <field name="model">bee.server.transport.order</field>
+            <field name="arch" type="xml">
+                <form string="运输单">
+                    <header>
+                        <button name="button_doing" string="开始运输" states="draft" type="object" class="oe_highlight"/>
+                        <button name="button_done" string="完成运输" states="doing" type="object" class="oe_highlight"/>
+                        <button name="button_close" string="关闭" states="done" type="object" class="oe_highlight"/>
+                        <button name="action_update_merge" string="并单" states="draft" type="object"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="transport_method" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="location_start" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="location_end" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="location_now"/>
+                            </group>
+                            <group>
+                                <field name="vander" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="loading_date" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                <field name="forecast_end_time"
+                                       attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                <field name="total_money" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string='在途信息'>
+                                <field name="line_ids">
+                                    <tree editable="bottom" create="false" class="oe_bee_server_table">
+                                        <field name="state" invisible="1"/>
+                                        <field name="contract_id" readonly="1"/>
+                                        <field name="order_id" invisible="1"/>
+                                        <field name="product_id" readonly="1"/>
+                                        <field name="bill" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                        <field name="start_date" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                                        <field name="arrive_date"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="start_quality"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="start_wet_weight"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="start_water_content"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="start_dry_weight" readonly="1"/>
+                                        <field name="arrive_quality"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="arrive_wet_weight"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="arrive_water_content"
+                                               attrs="{'readonly':[('state', 'in', ('done', 'closed'))]}"/>
+                                        <field name="arrive_dry_weight" readonly="1"/>
+                                        <field name="location_now" invisible="1"/>
+                                        <field name="merge_qty" readonly="1" invisible="1"/>
+                                        <field name="merge_from" readonly="1"/>
+                                        <field name="loss_type"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string='费用明细'>
+                                <field name="cost_line_ids">
+                                    <tree editable="bottom" class="oe_text">
+                                        <field name="product_id" domain="[('type', '=', 'service')]"/>
+                                        <field name="price_unit"/>
+                                        <field name="product_uom_qty"/>
+                                        <field name="price_total"/>
+                                        <field name="invoice_amount"/>
+                                        <field name="payment_amount"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="merge_form" model="ir.ui.view">
+            <field name="name">并单</field>
+            <field name="model">bee.server.transport.order</field>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="merge_contract_ids" domain="[('id', 'in', context.get('contract_ids', []))]"/>
+                        <field name="merge_line_ids" domain="[('id', 'in', context.get('line_ids', []))]"/>
+                    </group>
+                    <footer>
+                        <button name="update_merge_line" type="object" string="确认添加" class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+        <record id="inherit_ch_purchase_order_form_view" model="ir.ui.view">
+            <field name="name">采购订单添加字段</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//tree" position="inside">
+                    <button name="action_check_attr" string="检测值" type="object" icon="fa-list fa-lg"/>
+                    <!--<button name="action_check_attr" string="品位" type="object" class="oe_highlight"/>-->
+                </xpath>
+            </field>
+        </record>
+
+        <record id="ch_purchase_product_check_attr_value_compute_from_view" model="ir.ui.view">
+            <field name="name">检测值</field>
+            <field name="model">purchase.order.line</field>
+            <field eval="20" name="priority"/>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="product_id" readonly="1"/>
+                    </group>
+                    <notebook>
+                        <page string="品位">
+                            <field name="attr_value_weight_ids">
+                                <tree editable="bottom" create="false" edit="false" delete="false">
+                                    <field name="attr_id" readonly="1" string="属性"/>
+                                    <field name="stock_attr_value" readonly="1" string="入库品位"/>
+                                    <field name="account_attr_value" readonly="1" string="结算品位"/>
+                                    <field name="difference_attr_value" readonly="1" string="品位差"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ch_product_check_attr_value,ch_product_check_attr_value,model_ch_product_check_attr_value,,1,1,1,1
+access_ch_product_check_attr_value_weight,ch_product_check_attr_value_weight,model_ch_product_check_attr_value_weight,,1,1,1,1
